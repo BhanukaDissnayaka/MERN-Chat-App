@@ -1,4 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@440&display=swap");
+
 @import "tailwindcss";
 @plugin "daisyui" {
-  themes: light --default, dark --prefersdark;
+  themes: all;
+}
+
+.roboto-think {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 440;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
 }

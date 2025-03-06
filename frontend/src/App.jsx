@@ -4,7 +4,7 @@ import HomePage from "./pages/HomePage";
 
 function App() {
   return (
-    <div className="maxw-full max-w-[1500px] mx-auto">
+    <div data-theme="light">
       <Routes>
         <Route path="/" element={<HomePage />} />
       </Routes>

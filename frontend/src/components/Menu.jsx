@@ -8,7 +8,7 @@ const Menu = () => {
     <>
       {/* Toggle Button (Visible only on mobile) */}
       <button
-        className="lg:hidden fixed top-4 left-4 z-50 bg-gray-800 text-white p-2 rounded-md"
+        className="lg:hidden fixed top-4 left-4 z-50 bg-gray-800 text-base-content p-2 rounded-md"
         onClick={() => setIsOpen(!isOpen)}
       >
         <MenuIcon className="w-6 h-6" />
@@ -16,7 +16,7 @@ const Menu = () => {
 
       {/* Menubar */}
       <div
-        className={`h-screen bg-gray-800 text-white p-4 fixed top-0 left-0 transition-transform duration-300 ${
+        className={`h-screen bg-base-200 text-base-content p-4 fixed top-0 left-0 transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0 lg:relative lg:w-20  w-60 pt-15 lg:pt-4`}
       >

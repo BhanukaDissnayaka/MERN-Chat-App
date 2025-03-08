@@ -4,7 +4,7 @@ import HomePage from "./pages/HomePage";
 
 function App() {
   return (
-    <div data-theme="light">
+    <div data-theme="dark">
       <Routes>
         <Route path="/" element={<HomePage />} />
       </Routes>

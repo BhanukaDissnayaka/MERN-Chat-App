@@ -35,7 +35,7 @@ const Menu = () => {
 const MenuItem = ({ icon, text }) => {
   return (
     <div className="flex items-center space-x-3 p-2 rounded-md hover:bg-gray-700 cursor-pointer">
-      <span className="w-8 h-8">{icon}</span>
+      <span className="w-8 h-8 ">{icon}</span>
       <span className="lg:hidden">{text}</span>
     </div>
   );

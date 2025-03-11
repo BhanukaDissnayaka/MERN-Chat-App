@@ -16,7 +16,7 @@ const Menu = () => {
 
       {/* Menubar */}
       <div
-        className={`h-screen bg-base-200 text-base-content p-4 fixed top-0 left-0 transition-transform duration-300 ${
+        className={`h-screen z-40 bg-base-200 text-base-content p-4 fixed top-0 left-0 transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0 lg:relative lg:w-20  w-60 pt-15 lg:pt-4`}
       >

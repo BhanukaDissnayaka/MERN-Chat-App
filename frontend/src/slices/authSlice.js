@@ -26,6 +26,20 @@ export const singup = createAsyncThunk(
   }
 );
 
+export const login = createAsyncThunk(
+  "auth/login",
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const response = await axiosInstance.post("auth/login", credentials);
+      return response.data;
+    } catch (error) {
+      const errorMsg =
+        error.response?.data?.message || "Login failed. Please try again.";
+      return rejectWithValue(errorMsg);
+    }
+  }
+);
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -42,6 +56,19 @@ const authSlice = createSlice({
       })
       .addCase(singup.rejected, (state, action) => {
         state.isSigningUp = false;
+        toast.error(action.payload);
+      })
+      .addCase(login.pending, (state) => {
+        state.isLoggingIn = true;
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.isLoggingIn = false;
+        state.authUser = action.payload;
+        console.log(state.authUser);
+        toast.success("Login successfully");
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.isLoggingIn = false;
         toast.error(action.payload);
       });
   },

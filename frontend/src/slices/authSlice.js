@@ -12,6 +12,20 @@ const initialState = {
   socket: null,
 };
 
+export const checkAuth = createAsyncThunk(
+  "auth/check",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axiosInstance.get("auth/check");
+      return response.data;
+    } catch (error) {
+      const errorMsg =
+        error.response?.data?.message || "Authentication check failed";
+      return rejectWithValue(errorMsg);
+    }
+  }
+);
+
 export const singup = createAsyncThunk(
   "auth/singup",
   async (data, { rejectWithValue }) => {
@@ -70,6 +84,14 @@ const authSlice = createSlice({
       .addCase(login.rejected, (state, action) => {
         state.isLoggingIn = false;
         toast.error(action.payload);
+      })
+      .addCase(checkAuth.fulfilled, (state, action) => {
+        state.isCheckingAuth = false;
+        state.authUser = action.payload;
+      })
+      .addCase(checkAuth.rejected, (state, action) => {
+        state.isCheckingAuth = false;
+        console.log(action.payload);
       });
   },
 });

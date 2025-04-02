@@ -1,8 +1,17 @@
 import { useState } from "react";
-import { Home, MessageSquare, Settings, Menu as MenuIcon } from "lucide-react";
+import {
+  Home,
+  MessageSquare,
+  Settings,
+  Menu as MenuIcon,
+  LogOut,
+} from "lucide-react";
+import { useDispatch } from "react-redux";
+import { logout } from "../slices/authSlice";
 
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -25,6 +34,14 @@ const Menu = () => {
           <MenuItem icon={<Home />} text="Home" />
           <MenuItem icon={<MessageSquare />} text="Messages" />
           <MenuItem icon={<Settings />} text="Settings" />
+          <MenuItem
+            icon={
+              <button onClick={() => dispatch(logout())}>
+                <LogOut />
+              </button>
+            }
+            text="Logout"
+          />
         </nav>
       </div>
     </>

@@ -54,6 +54,20 @@ export const login = createAsyncThunk(
   }
 );
 
+export const logout = createAsyncThunk(
+  "auth/logout",
+  async (_, { rejectWithValue }) => {
+    try {
+      await axiosInstance.post("auth/logout");
+      return true;
+    } catch (error) {
+      const errorMsg =
+        error.response?.data?.message || "Logout failed. Please try again.";
+      return rejectWithValue(errorMsg);
+    }
+  }
+);
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -92,6 +106,13 @@ const authSlice = createSlice({
       .addCase(checkAuth.rejected, (state, action) => {
         state.isCheckingAuth = false;
         console.log(action.payload);
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.authUser = null;
+        toast.success("Logout successfully");
+      })
+      .addCase(logout.rejected, (_, action) => {
+        toast.error(action.payload);
       });
   },
 });

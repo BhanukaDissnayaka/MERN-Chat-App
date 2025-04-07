@@ -8,7 +8,7 @@ const MessageInput = () => {
           <input
             type="text"
             placeholder="Type here"
-            class="input w-full lg:h-11"
+            className="input w-full lg:h-11"
           />
           <input
             id="img-input"
@@ -16,7 +16,7 @@ const MessageInput = () => {
             accept="image/*"
             className="hidden"
           />
-          <label for="img-input" className="cursor-pointer">
+          <label htmlFor="img-input" className="cursor-pointer">
             <Image size={25} />
           </label>
           <button type="submit" className="cursor-pointer">

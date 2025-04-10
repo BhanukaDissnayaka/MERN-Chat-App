@@ -5,10 +5,9 @@ import authRouter from "./routes/auth.route.js";
 import messageRouter from "./routes/message.route.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import { app, server } from "./lib/socket.js";
 
-const app = express();
 dotenv.config();
-
 
 app.use(express.json({ limit: "10mb" })); // Adjust the limit as needed
 app.use(express.urlencoded({ limit: "10mb", extended: true }));
@@ -25,6 +24,7 @@ const MONGO_URI = process.env.MONGO_URI;
 
 app.use("/api/auth/", authRouter);
 app.use("/api/messages/", messageRouter);
+
 mongoose
   .connect(MONGO_URI, {
     useNewUrlParser: true,
@@ -33,6 +33,6 @@ mongoose
   .then(() => console.log(`MongoDB connectd`))
   .catch((err) => console.log("mongodb conction error", err));
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
